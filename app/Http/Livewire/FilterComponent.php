@@ -49,6 +49,7 @@ class FilterComponent extends Component
             default:
                 return [0, PHP_INT_MAX];
         }
+
     }
 
     public function render()

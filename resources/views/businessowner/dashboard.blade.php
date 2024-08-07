@@ -1,14 +1,14 @@
 @extends('layouts.business')
 @section('content')
 
-    <div class="mt-28 mx-12">
+    <div class="mx-12 mt-28">
 
-        <div class=" bg-white rounded-lg py-6 shadow-md">
-            <div class="flex justify-between items-center">
+        <div class="py-6 bg-white rounded-lg shadow-md ">
+            <div class="flex items-center justify-between">
 
-                <div class="bg-gray-100 flex items-center space-x-6 rounded-md ml-2 py-3 w-1/4">
+                <div class="flex items-center w-1/4 py-3 ml-2 space-x-6 bg-gray-100 rounded-md">
 
-                        <div class=" flex items-center gap-1 ml-2 w-28 py-2 rounded-md bg-white shadow-md px-2">
+                        <div class="flex items-center gap-1 px-2 py-2 ml-2 bg-white rounded-md shadow-md w-28">
                             <ion-icon class="text-primary" name="grid"></ion-icon>
                             <span class="font-bold">Plartforms</span>
                         </div>
@@ -18,12 +18,12 @@
 
                 </div>
                 <div class="flex items-center gap-2 mr-8">
-                    <ion-icon class="h-8 w-8" name="filter"></ion-icon>
+                    <ion-icon class="w-8 h-8" name="filter"></ion-icon>
                     <span class="font-bold text-gray-800">Filters</span>
                 </div>
             </div>
            <!--Livewire Filters -->
-           @livewire('filter-component')
+            @livewire('filter-component')
         </div>
 
 

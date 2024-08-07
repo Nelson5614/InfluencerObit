@@ -19,6 +19,7 @@
     @livewireStyles
 </head>
 <body class="bg-gray-50 ">
+
     <!--Vertical Line -->
     {{-- <div class="bg-gray-100 z-10 w-0.5 fixed h-80 mt-20 left-28 "></div> --}}
 

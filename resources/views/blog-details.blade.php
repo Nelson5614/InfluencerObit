@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
     <div class="w-full h-full flex items-center justify-center">
-        <div class="mt-28 px-32">
+        <div class="md:mt-28 mt-12 px-4 md:px-32">
 
 
                     <h1 class="font-bold text-4xl border-b border-gray-200 py-7">How Creators Shape Online Buying Decisions</h1>

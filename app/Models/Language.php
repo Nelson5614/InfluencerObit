@@ -12,4 +12,10 @@ class Language extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function influencer(){
+
+        return $this->belongsTo(Influencer::class);
+    }
+
 }

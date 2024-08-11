@@ -19,7 +19,7 @@
                     <p class="">Influencer marketing, affiliate programs, creator management, user generated content, brand ambassadors: build valuable partnerships to grow your business</p>
                 </div>
                 <div class="py-6 ">
-                    <button class="px-5 py-2 bg-primary text-white rounded-md hover:bg-secondary">Get Started</button>
+                    <a href="{{ route('select-role') }}" class="px-5 py-2 bg-primary text-white rounded-md hover:bg-secondary">Get Started</a>
                 </div>
             </div>
             <div>
@@ -49,14 +49,7 @@
     </section>
 
     <section class="py-8 px-14 mt-12">
-        <div class="text-center">
-            <div class="absolute bg-dots md:w-48 md:h-34 w-44 h-14 -mt-12 -ml-12"></div>
-            <h1 class="font-bold text-3xl text-gray-600">The Vast World Of Social Media!</h1>
-            <div class=" flex justify-center items-center mt-1">
 
-                <div class="w-40 h-1 bg-secondary"></div>
-            </div>
-        </div>
 
         <div class="flex md:flex-row flex-col mt-10 justify-center items-center gap-14">
             <div class="md:w-1/2">
@@ -64,7 +57,6 @@
             </div>
             <div class="md:w-1/2">
                 <h1 class="font-bold text-3xl mb-14 text-gray-600">Find Your Right Influencer</h1>
-                <div class="absolute ml-3.5 md:h-64 h-72 border-l-2 border-dotted border-gray-400"></div>
                 <div class="flex gap-4 items-center">
 
                     <div class=" z-10 ">
@@ -111,7 +103,7 @@
                 <p class="text-white font-semibold pt-4" >The more you time you wait, the more time you are wasting. sign up now and explore our app and what it can do for your business. Dont miss your opportunity</p>
                 <div class="mt-6">
 
-                    <a href="" class="bg-primary text-white rounded-md px-4 py-2 hover:bg-secondary">Get Started</a>
+                    <a href="{{ route('select-role') }}" class="bg-primary text-white rounded-md px-4 py-2 hover:bg-secondary">Get Started</a>
                 </div>
 
             </div>
@@ -121,7 +113,6 @@
         <div class="flex md:flex-row flex-col justify-center items-center gap-14">
             <div class="flex justify-end">
 
-                <div class="absolute bg-dots md:w-48 md:h-64 w-44 h-14 -mt-12 -ml-12"></div>
             </div>
             <div class="md:w-1/2">
                 <h1 class="font-bold text-3xl mb-14 text-gray-600">Manage Your Influencers!</h1>

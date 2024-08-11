@@ -10,10 +10,9 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Cache\RateLimiting\Limit;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
-
-
 use Illuminate\Support\Facades\RateLimiter;
 use App\Actions\Fortify\CustomLoginResponse;
+use App\Actions\Fortify\CustomRegisterResponse;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 
 
@@ -41,6 +40,12 @@ class FortifyServiceProvider extends ServiceProvider
          $this->app->singleton(
             \Laravel\Fortify\Contracts\LoginResponse::class,
             CustomLoginResponse::class
+
+        );
+
+        $this->app->singleton(
+            \Laravel\Fortify\Contracts\RegisterResponse::class,
+            CustomRegisterResponse::class
 
         );
 

@@ -39,7 +39,7 @@
                 <ul class="space-y-8">
                     <li class="flex gap-4 item">
                         <ion-icon name="chevron-forward-outline"></ion-icon>
-                        <a class="text-xs font-semibold transition ease-in-out delay-150 font-inter hover:translate-x-6 hover:scale-105 hover:text-secondary" href="">Discover Influencer</a>
+                        <a class="text-xs font-semibold transition ease-in-out delay-150 font-inter hover:translate-x-6 hover:scale-105 hover:text-secondary" href="{{ route('business-owner.dashboard') }}">Discover Influencer</a>
                     </li>
                     <li class="flex gap-4 item">
                         <ion-icon name="chevron-forward-outline"></ion-icon>

@@ -9,7 +9,7 @@
                 <option value="South Africa">South Africa</option>
             </select>
 
-            <select wire:model="language" class="w-32 px-3 py-2 mx-2 my-6 border border-gray-300 rounded-md">
+            <select wire:model="languages" class="w-32 px-3 py-2 mx-2 my-6 border border-gray-300 rounded-md">
                 <option value="">Language</option>
                 <option value="Sesotho">Sesotho</option>
                 <option value="Setswana">Setswana</option>
@@ -38,7 +38,7 @@
                 <span class="text-sm font-bold text-gray-800">Filters:</span>
                 <div class="md:space-x-8 space-x-1">
                     <span>Location: <span class="text-primary">{{ $location }}</span></span>
-                    <span>Language: <span class="text-primary">{{ $language }}</span></span>
+                    <span>Language: <span class="text-primary">{{ $languages }}</span></span>
                     <span>Platform: <span class="text-primary">{{ $platforms }}</span></span>
                     <span>Followers: <span class="text-primary">{{ $followers }}</span></span>
                 </div>
@@ -76,10 +76,28 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="w-1/3 px-4 py-3 text-left whitespace-nowrap">{{ $influencer->platforms }}</td>
-                                    <td class="px-4 py-3 text-left whitespace-nowrap">{{ $influencer->language }}</td>
+                                    <td class="w-1/3 px-4 py-3 text-left whitespace-nowrap">
+                                        @foreach ($influencer->platforms as $platform)
+                                        <div class="flex items-center gap-2">
+                                            <span>{{ $platform->name }}</span>
+                                        </div>
+                                        @endforeach
+                                    </td>
+                                    <td class="px-4 py-3 text-left whitespace-nowrap">
+                                        @foreach ($influencer->languages as $language)
+                                        <div class="flex items-center gap-2">
+                                            <span>{{ $language->name }}</span>
+                                        </div>
+                                        @endforeach
+                                    </td>
                                     <td class="px-4 py-3 text-left whitespace-nowrap">{{ $influencer->followers }}</td>
-                                    <td class="w-1/3 px-4 py-3 text-left whitespace-nowrap">{{ $influencer->topics }}</td>
+                                    <td class="w-1/3 px-4 py-3 text-left whitespace-nowrap">
+                                        @foreach ($influencer->topics as $topic)
+                                        <div class="flex items-center gap-2">
+                                            <span>{{ $topic->name }}</span>
+                                        </div>
+                                        @endforeach
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

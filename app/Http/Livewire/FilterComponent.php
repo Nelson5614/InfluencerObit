@@ -11,7 +11,7 @@ class FilterComponent extends Component
     use WithPagination;
 
     public $location;
-    public $language;
+    public $languages;
     public $platforms;
     public $followers;
 
@@ -42,30 +42,37 @@ class FilterComponent extends Component
     }
 
     public function render()
-    {
-        $results = [];
+{
+    $results = [];
 
-        if ($this->searchPerformed) {
-            $results = Influencer::query()
-                ->when($this->location, function ($query) {
-                    $query->where('location', $this->location);
-                })
-                ->when($this->language, function ($query) {
-                    $query->where('language', $this->language);
-                })
-                ->when($this->platforms, function ($query) {
-                    $query->where('platforms', $this->platforms);
-                })
-                ->when($this->followers, function ($query) {
-                    $query->whereBetween('followers', $this->parseFollowers($this->followers));
-                })
-                ->paginate(10);
-        }
-
-        return view('livewire.filter-component', [
-            'results' => $results
-        ]);
+    if ($this->searchPerformed) {
+        $results = Influencer::query()
+            ->when($this->location, function ($query) {
+                $query->where('location', $this->location);
+            })
+            ->when($this->languages, function ($query) {
+                $languagesArray = is_array($this->languages) ? $this->languages : explode(',', $this->languages);
+                $query->whereHas('languages', function ($q) use ($languagesArray) {
+                    $q->whereIn('name', $languagesArray);
+                });
+            })
+            ->when($this->platforms, function ($query) {
+                $platformsArray = is_array($this->platforms) ? $this->platforms : explode(',', $this->platforms);
+                $query->whereHas('platforms', function ($q) use ($platformsArray) {
+                    $q->whereIn('name', $platformsArray);
+                });
+            })
+            ->when($this->followers, function ($query) {
+                $query->whereBetween('followers', $this->parseFollowers($this->followers));
+            })
+            ->paginate(10);
     }
+
+    return view('livewire.filter-component', [
+        'results' => $results
+    ]);
+}
+
 }
 
 

@@ -10,6 +10,8 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', [PagesController::class, 'index'])->name('home');
 Route::get('/blog', [PagesController::class, 'blog'])->name('blog');
 Route::get('/contact', [PagesController::class, 'contact'])->name('contact');
+Route::get('/influencer', [PagesController::class, 'influencer'])->name('influencer');
+Route::get('/blog-details', [PagesController::class, 'blogdetails'])->name('blog.details');
 Route::get('/features/find-influecer', [PagesController::class, 'findinfluencer'])->name('feature.findinfluencer');
 Route::get('/features/influecer-analyser', [PagesController::class, 'analyzeinfluencer'])->name('feature.analyzeinfluencer');
 

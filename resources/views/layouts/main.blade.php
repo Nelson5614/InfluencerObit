@@ -47,7 +47,7 @@
                         </li>
                         <li class="flex items-center gap-2">
                             <ion-icon name="person-outline" class="text-primary"></ion-icon>
-                            <a href="#" class="hover:text-primary">Influencers</a>
+                            <a href="{{ route('influencer') }}" class="hover:text-primary">Influencers</a>
                         </li>
                         <li class="flex items-center gap-2">
                             <ion-icon name="help-circle-outline" class="text-primary"></ion-icon>

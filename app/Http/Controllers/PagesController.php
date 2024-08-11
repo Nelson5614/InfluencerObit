@@ -34,6 +34,10 @@ class PagesController extends Controller
         return view('contact');
 
     }
+    public function influencer(){
+        return view('influencer');
+
+    }
 
     public function findinfluencer(){
         return view('findinfluencer');
@@ -44,5 +48,8 @@ class PagesController extends Controller
 
     public function influencerprofile(){
         return view('influencerprofile');
+    }
+    public function blogdetails(){
+        return view('blog-details');
     }
 }

@@ -59,11 +59,10 @@ class ProfileController extends Controller
 
 
 
-           // Handle profile picture upload
-        $profilePicturePath = null;
-        if ($request->hasFile('profilePicture')) {
-            $profilePicturePath = $request->file('profilePicture')->store('profile_pictures');
-        }
+        // Handle profile picture upload
+        $profilePicturePath = $request->hasFile('photo')
+            ? $request->file('profilePicture')->store('photos', 'public')
+            : 'assets/images/default.png';
 
         $influencer = Influencer::create([
 
@@ -140,56 +139,61 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Influencer $influencer, $id)
+    public function update(Request $request, $id)
+    {
+        $influencer = Influencer::findOrFail($id);
 
-{
+        // Validate the inputs
+        $validated = $request->validate([
+            'profilePicture' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'languages' => 'nullable|array',
+            'topics' => 'nullable|array',
+            'platforms' => 'nullable|array',
+            'website' => 'nullable|string',
+            'location' => 'required|string',
+            'phone' => 'nullable|string|max:15',
+            'chargeperhour' => 'nullable|string',
+            'followers' => 'required|integer|min:10000',
+            'name' => 'required|string',
+            'about' => 'required|string'
+        ]);
 
+        // Handle profile picture upload
+        $profilePicturePath = $request->hasFile('profilePicture')
+            ? $request->file('profilePicture')->store('photos', 'public')
+            : $influencer->profilePicture;
 
-    $influencer = Influencer::findOrFail($id);
+        // Update the influencer record
+        $influencer->update([
+            'name' => $validated['name'],
+            'website' => $validated['website'],
+            'about' => $validated['about'],
+            'location' => $validated['location'],
+            'followers' => $validated['followers'],
+            'profilePicture' => $profilePicturePath,
+            'phone' => $validated['phone'],
+            'chargeperhour' => $validated['chargeperhour']
+        ]);
 
-    // Validate the inputs
-    $validated = $request->validate([
-        'topics' => 'nullable|array',
-        'languages' => 'nullable|array',
-        'platforms' => 'nullable|array',
-        'website' => 'nullable|url',
-        'phone' => 'nullable|string|max:15',
-        'chargeperhour' => 'nullable|numeric',
-    ]);
+        // Process and sync topics, languages, and platforms
+        $influencer->topics()->sync($this->processTags($validated['topics'] ?? [], Topic::class));
+        $influencer->languages()->sync($this->processTags($validated['languages'] ?? [], Language::class));
+        $influencer->platforms()->sync($this->processTags($validated['platforms'] ?? [], Platform::class));
 
-    $influencer->update($request->only([
-        'website',
-        'phone',
-        'chargeperhour',
-
-    ]));
-
-    // Process topics
-    $topics = array_map('trim', explode(',', $request->input('topics')[0]));
-    $influencer->topics()->sync($this->processTags($topics, Topic::class));
-
-    // Process languages
-    $languages = array_map('trim', explode(',', $request->input('languages')[0]));
-    $influencer->languages()->sync($this->processTags($languages, Language::class));
-
-    // Process platforms
-    $platforms = array_map('trim', explode(',', $request->input('platforms')[0]));
-    $influencer->platforms()->sync($this->processTags($platforms, Platform::class));
-
-    // Save other influencer fields as necessary
-    $influencer->save();
-
-    return back()->with('success', 'Profile updated successfully!');
-}
-
-protected function processTags(array $tags, $model)
-{
-    $tagIds = [];
-    foreach ($tags as $tag) {
-        $tagModel = $model::firstOrCreate(['name' => $tag]);
-        $tagIds[] = $tagModel->id;
+        return redirect()->route('influencer.profile')->with('success', 'Profile updated successfully!');
     }
-    return $tagIds;
+
+
+protected function processTags(array $tags, string $modelClass): array
+{
+    $modelIds = [];
+
+    foreach ($tags as $tagName) {
+        $tag = $modelClass::firstOrCreate(['name' => trim($tagName)]);
+        $modelIds[] = $tag->id;
+    }
+
+    return $modelIds;
 }
 
 

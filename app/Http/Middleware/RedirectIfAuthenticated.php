@@ -21,9 +21,18 @@ class RedirectIfAuthenticated
     {
         $guards = empty($guards) ? [null] : $guards;
 
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+          // Check if the user is authenticated
+          if (Auth::check()) {
+            // Get the authenticated user's role ID
+            $role = Auth::user()->role_id;
+
+            // Redirect to the business owner dashboard if the role ID is 1
+            if ($role == 1) {
+                return redirect()->route('business-owner.dashboard');
+            }
+            // Redirect to the influencer dashboard if the role ID is 2
+            elseif ($role == 2) {
+                return redirect()->route('influencer.dashboard');
             }
         }
 

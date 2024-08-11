@@ -9,17 +9,23 @@
 
     <div class="md:flex-row flex-col md:gap-6 md:p-10 p-4 bg-white" >
         <div class=" flex md:gap-6 gap-2">
-            <img class="md:h-64 md:w-56 w-28 h-28 p-4" src="{{ asset('assets/images/creator.jpg') }}" alt="">
+                @if($influencer)
+
+                <img class="md:h-64 md:w-56 w-28 h-28 p-4" src="{{ asset('storage/' . $influencer->profilePicture) }}" alt="Profile Picture">
+
+                @endif
+
+
             <div>
 
                 <div class=" space-y-4 mt-2">
-                    <span class="md:text-2xl text-md font-bold font-inter">{{ Auth()->user()->name }}</span> <br>
+                    <span class="md:text-2xl text-md font-bold font-inter">{{ $influencer->name }}</span> <br>
                     <span class="text-secondary text-md">Content Creator</span>
 
                 </div>
-                <div class="flex items-center gap-2 md:mt-12 mt-3">
+                <div class="flex items-center gap-2 mt-3">
                     <ion-icon name="location"></ion-icon>
-                    <span>maseru</span>
+                    <span>{{ $influencer->location }}</span>
                 </div>
             </div>
 
@@ -57,7 +63,7 @@
                     <span class="text-2xl font-bold">Topics</span>
                     <div class="mt-8 md:space-x-6 space-x-2 flex">
                         @foreach ($influencer->topics as $topic)
-                            <span class="border-2 border-gray-300 p-1 whitespace-nowrap rounded-full">{{ $topic->name }}</span>
+                            <span class=" p-1 whitespace-nowrap rounded-full">{{ $topic->name }}</span>
                         @endforeach
                     </div>
                 </div>

@@ -13,9 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-
-     <!-- Tailwind -->
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -24,65 +22,36 @@
 </head>
 <body class="bg-gray-50 ">
 
-    <!--Vertical Line -->
-    {{-- <div class="bg-gray-100 z-10 w-0.5 fixed h-80 mt-20 left-28 "></div> --}}
 
-    <!-- Start of SideBar -->
-    <div class="fixed top-0 hidden left-0 w-64 h-screen py-6 bg-gray-100 sm:block ">
-        <img class="py-2 ml-20 rounded-md w-28 " src="{{ asset('assets/images/logo/logo1.png') }}" alt="">
-        <div class="pb-8 mt-10 border-b border-gray-100">
-            <div class="flex items-center gap-8">
-                <ion-icon class="w-8 h-6 px-1 py-1 mt-2 ml-2 text-white rounded-lg bg-primary " name="home-outline"></ion-icon>
-                <span class="mt-2 text-lg font-bold ">Features</span>
-            </div>
-            <div class="mt-10 ml-20 ">
-                <ul class="space-y-8">
-                    <li class="flex gap-4 item">
-                        <ion-icon name="chevron-forward-outline"></ion-icon>
-                        <a class="text-xs font-semibold transition ease-in-out delay-150 font-inter hover:translate-x-6 hover:scale-105 hover:text-secondary" href="">Discover Influencer</a>
-                    </li>
-                    <li class="flex gap-4 item">
-                        <ion-icon name="chevron-forward-outline"></ion-icon>
-                        <a class="text-xs font-semibold transition ease-in-out delay-150 font-inter hover:translate-x-6 hover:scale-105 hover:text-secondary" href="">Manage Influencer</a>
-                    </li>
 
-                    <li class="flex gap-4 item">
-                        <ion-icon name="chevron-forward-outline"></ion-icon>
-                        <a class="text-xs font-semibold transition ease-in-out delay-150 font-inter hover:translate-x-6 hover:scale-105 hover:text-secondary" href="">Messages</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="border-4 bg-opacity-10 bg-primary w-56 ml-3.5 mt-6 rounded-xl  border-primary">
-            <h2 class=" abosolute text-center px-0.5 text-sm text-white bg-primary -mt-2.5 ml-6 w-44 rounded-full">For Small Businesses</h2>
-            <h2 class="text-md font-semibold px-2.5 pt-4">Deliver instant answers</h2>
-            <p class="px-2 py-1 ml-1 text-sm leading-6">Our all in one AI powered influencer plartform that helps you get to your customers faster  without spending too much.</p>
-            <div class="flex items-center gap-2 py-2 ml-4">
-                <ion-icon class="text-primary" name="arrow-forward-outline"></ion-icon>
-                <a class="text-sm transition ease-in-out delay-150 text-primary hover:translate-x-6 hover:scale-105" href="">Talk to an expert</a>
-            </div>
-        </div>
-    </div>
-    <!-- end of sidebar -->
-    <div class="md:ml-64 ">
+    <div class=" w-full ">
         <!-- Horizontal Navbar -->
-        <div class="fixed top-0 right-0 hidden z-10 sm:flex items-center justify-between h-20 border-b-2 border-gray-100 bg-gray-50 left-64 rounded-r-md px-11">
-            <span>Dashboard</span>
+        <div class="fixed top-0 w-full right-0 hidden z-10 sm:flex items-center justify-between h-20 border-b-2 border-gray-100 bg-gray-50 rounded-r-md px-11">
+            <img class="py-2 ml-20 rounded-md w-28 " src="{{ asset('assets/images/logo/logo1.png') }}" alt="">
+
+        <ul class="flex flex-col gap-8 md:flex-row md:items-center md:gap-10">
+            <li>
+                <a href="{{ route('influencer.dashboard') }}" class="hover:text-primary"> Resources</a>
+            </li>
 
 
+            <li>
+                <a class="hover:text-primary" href="{{ route('influencer.profile') }}">My Profile</a>
+            </li>
+            <li>
+                <a class="hover:text-primary" href="{{ route('influencer.contact') }}">Contact</a>
+            </li>
+        </ul>
 
-            <!--end of search by topic component -->
-            <div class="flex items-center gap-1 mr-4">
-                <a href="">
-                    <ion-icon name="notifications-outline" class="w-8 h-8"></ion-icon cla>
-                </a>
-                <livewire:profile-menu/>
-            </div>
+        <livewire:profile-menu/>
+
         </div>
          <!-- Mobile Header & Nav -->
          <header x-data="{ isOpen: false }" class="w-full px-6 py-5 bg-sidebar sm:hidden">
             <div class="flex items-center justify-between">
-                <a href="" class="text-xl font-semibold text-grau-900 uppercase hover:text-gray-700">Dashboard</a>
+               <a href="{{ route('influencer.dashboard') }}">
+                <img class="py-2 rounded-md w-28 " src="{{ asset('assets/images/logo/logo1.png') }}" alt="">
+                </a>
                 <button @click="isOpen = !isOpen" class="text-3xl text-primary focus:outline-none">
                     <i x-show="!isOpen" class="fas fa-bars"></i>
                     <i x-show="isOpen" class="fas fa-times"></i>
@@ -91,22 +60,20 @@
 
             <!-- Dropdown Nav -->
             <nav :class="isOpen ? 'flex': 'hidden'" class="flex flex-col pt-4">
-                <a href="index.html" class="flex items-center py-4 pl-4 text-gray-900 active-nav-link nav-item">
+                <a href="{{ route('influencer.dashboard') }}" class="flex items-center py-4 pl-4 text-gray-900 active-nav-link nav-item">
                     <i class="mr-3 fas text-primary fa-tachometer-alt"></i>
-                    Dashboard
+                    Resources
                 </a>
-                <a href="" class="flex items-center py-4 pl-4 text-gray-900  opacity-75 hover:opacity-100 nav-item">
+
+                <a href="{{ route('influencer.profile') }}" class="flex items-center py-4 pl-4 text-gray-900  opacity-75 hover:opacity-100 nav-item">
                     <ion-icon class="text-primary mr-3" name="search"></ion-icon>
-                    Find Influencers
+                    My Profile
                 </a>
-                <a href="" class="flex items-center py-4 pl-4 text-gray-900  opacity-75 hover:opacity-100 nav-item">
+                <a href="{{ route('influencer.contact') }}" class="flex items-center py-4 pl-4 text-gray-900  opacity-75 hover:opacity-100 nav-item">
                     <i class="mr-3 text-primary fas fa-table"></i>
-                    Manage influencers
+                   Contact
                 </a>
-                <a href=" " class="flex items-center py-4 pl-4 text-gray-900  opacity-75 hover:opacity-100 nav-item">
-                    <ion-icon class="mr-3 text-primary" name="mail"></ion-icon>
-                    Messages
-                </a>
+
 
 
                 <div class="pt-4 pb-1 border-t border-white">
@@ -179,11 +146,9 @@
                 </div>
 
             </nav>
-            <!-- <button class="flex items-center justify-center w-full py-2 mt-5 font-semibold bg-white rounded-tr-lg rounded-bl-lg rounded-br-lg shadow-lg cta-btn hover:shadow-xl hover:bg-gray-300">
-                <i class="mr-3 fas fa-plus"></i> New Report
-            </button> -->
+
         </header>
-        <!--End Horizontal Bar -->
+
         <main>
             @yield('content')
         </main>
@@ -199,7 +164,6 @@
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
     @livewireScripts
 </body>
 </html>

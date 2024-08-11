@@ -1,12 +1,12 @@
 @extends('layouts.business')
 @section('content')
 
-    <div class="mx-12 mt-28">
+    <div class="md:mx-12 md:mt-28 mx-2 mt-4">
 
-        <div class="py-6 bg-white rounded-lg shadow-md ">
+        <div class="py-6 bg-white rounded-lg ">
             <div class="flex items-center justify-between">
 
-                <div class="flex items-center w-1/4 py-3 ml-2 space-x-6 bg-gray-100 rounded-md">
+                <div class="flex items-center md:w-1/4 w-[250px] py-3 ml-2 space-x-6 bg-gray-100 rounded-md">
 
                         <div class="flex items-center gap-1 px-2 py-2 ml-2 bg-white rounded-md shadow-md w-28">
                             <ion-icon class="text-primary" name="grid"></ion-icon>

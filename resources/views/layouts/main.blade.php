@@ -55,11 +55,9 @@
                         </li>
                     </ul>
                 </li>
+
                 <li>
-                    <a class="hover:text-primary" href="">Pricing</a>
-                </li>
-                <li>
-                    <a class="hover:text-primary" href="">Contact</a>
+                    <a class="hover:text-primary" href="{{ route('contact') }}">Contact</a>
                 </li>
             </ul>
         </div>

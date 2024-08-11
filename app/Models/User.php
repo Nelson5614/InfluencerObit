@@ -63,4 +63,9 @@ class User extends Authenticatable
     public function role(){
         $this->belongsTo(Role::class);
     }
+
+        public function influencer()
+    {
+        return $this->hasOne(Influencer::class);
+    }
 }
